@@ -1,0 +1,12 @@
+.x-btn.my-over {
+    background: blue;
+}
+/*Ext is not consistent */
+.x-btn.x-btn-my-pressed {
+    background: red;
+    font-weight: bold;
+}
+
+.x-grid-cell-inner{
+    text-align: center;
+}
