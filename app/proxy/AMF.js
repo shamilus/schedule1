@@ -15,7 +15,7 @@ Ext.define('Schedule.proxy.AMF', {
         this.reader = {
             type: 'json'
         };
-
+        log('amf');
         this.callParent(arguments);
     },
 

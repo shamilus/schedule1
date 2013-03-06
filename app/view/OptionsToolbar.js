@@ -142,7 +142,6 @@ Ext.define('Schedule.view.OptionsToolbar', {
         var btn = Ext.get(event.target);
         var action = eOpts.action;
         this.fireEvent(action);
-        log(action);
 
     }
 });
