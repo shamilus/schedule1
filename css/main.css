@@ -1,11 +1,13 @@
 .x-btn.my-over {
     background: blue;
 }
-/*Ext is not consistent */
 .x-btn.x-btn-my-pressed {
     background: red;
     font-weight: bold;
+
 }
+
+
 
 .x-grid-cell-inner{
     text-align: center;
@@ -16,6 +18,8 @@
     background-color: #ff0000;
     font-weight: bold;
 }
+
+
 
 /* Splash screen */
 
@@ -46,3 +50,11 @@
 
 
 /* End Splash screen */
+
+
+.tbar-tabpanel {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background:#ffffff !important;
+}
+

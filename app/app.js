@@ -8,15 +8,14 @@
 
 
 Ext.Loader.setConfig({
-    paths: {'view':'app/view', 'proxy':'app/proxy'}
+    paths: {'view':'app/view', 'proxy':'app/proxy', 'store':'app/store'}
 });
 
 
 
-//Ext.require('view.OptionsToolbar');
+//Ext.require(['view.MainView','view.OptionsToolbar']);
 
-
-
+//Ext.require('Schedule.store.WeekStore');
 
 function log(msg){
     console.log(msg);
@@ -42,13 +41,18 @@ Ext.onReady(function() {
 
 var app = Ext.application({
     name:'Schedule',
-
+    
+    
+    // State manager
+    init:function(){
+     Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+    },
 
     //autoCreateViewport:true,
     launch:function(){
                 log('app'); 
           
-        var week = Ext.create('Schedule.view.WeekView',{
+        var view = Ext.create('Schedule.view.MainView',{
             
             
         });
@@ -75,14 +79,16 @@ var app = Ext.application({
         });
         // Run the fade 500 milliseconds after launch.
         task.delay(500);
+       
         
+      this.fireEvent('creationComplete');
 
     },
 
-    models:['TableData'],
-    stores:['TheStore'],
-    controllers:['MainController'],
-    views:['WeekView']
+    models:['TableData', 'AppState'],
+    stores:['WeekStore'],
+    controllers:['MainController', 'WeekController'],
+    views:['MainView', 'OptionsToolbar']
 
 });
 

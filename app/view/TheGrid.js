@@ -36,13 +36,7 @@ Ext.define('Schedule.view.TheGrid', {
             {header: 'замена', dataIndex: 'replace', flex:3}
 
         ];
-        /*
-        var html = '<h1 class="gridTitle">{text}</h1>';
-        var tpl = new Ext.DomHelper.createTemplate(html);
-        tpl.append(this, {
-            text:this.title
-        });
-*/
+       
         this.callParent(arguments);
     }
 });

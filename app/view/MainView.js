@@ -6,10 +6,11 @@
  */
 
 
-var vp = Ext.define('Schedule.view.WeekView', {
+Ext.define('Schedule.view.MainView', {
     extend: 'Ext.container.Viewport',
-    alias: 'widget.weekView',
-    requires: ['Schedule.view.TheGrid', 'Schedule.view.OptionsToolbar'],
+    alias: 'widget.mainView',
+    requires: ['Schedule.view.OptionsToolbar'],
+    alias:'widget.mainView',
     layout: {
         type: 'vbox',
         align: 'stretch'
@@ -17,7 +18,7 @@ var vp = Ext.define('Schedule.view.WeekView', {
     },
     autoScroll:true,
     initComponent: function() {
-        log('view: WeekView');
+        log('view: MainView');
         this.items = {
             dockedItems: [{
                     dock: 'top',
