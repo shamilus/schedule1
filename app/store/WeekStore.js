@@ -1,10 +1,3 @@
-/**
- * User: Shamil
- * Date: 04.02.13
- * Time: 14:51
- *
- */
-
 
 Ext.define('Schedule.store.WeekStore', {
     extend: 'Ext.data.Store',

@@ -9,13 +9,9 @@
 Ext.define('Schedule.view.TheGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.thegrid',
-    padding: 10,
-    layout: {
-        type: 'hbox',
-        align: 'stretch',
-        width:'100%',
-
-    },
+    padding: 0,
+   
+    
     /*
      // Item rendering
     viewConfig: {
@@ -31,8 +27,8 @@ Ext.define('Schedule.view.TheGrid', {
         this.columns = [
             {header: 'начинается', dataIndex: 'time_begin', flex:1},
             {header: 'заканчивается', dataIndex: 'time_end', flex:1},
-            {header: 'класс', dataIndex: 'class', flex:2},
-            {header: 'преподаватель', dataIndex: 'teacher', flex:2},
+            {header: 'класс', dataIndex: 'class', flex:3},
+            {header: 'преподаватель', dataIndex: 'teacher', flex:3},
             {header: 'замена', dataIndex: 'replace', flex:3}
 
         ];

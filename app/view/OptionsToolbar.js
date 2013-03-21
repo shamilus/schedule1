@@ -4,8 +4,7 @@ Ext.define('Schedule.view.OptionsToolbar', {
     extend: 'Ext.toolbar.Toolbar',
     alias: 'widget.optionsToolbar',
     border: false,
-    height: 50,
-                    cls: 'tbar-tabpanel',
+    cls: 'tbar-tabpanel',
 
     constructor: function() {
         this.items = [

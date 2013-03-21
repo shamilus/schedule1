@@ -19,8 +19,6 @@
     font-weight: bold;
 }
 
-
-
 /* Splash screen */
 
 .x-mask.splashscreen {
@@ -58,3 +56,28 @@
     background:#ffffff !important;
 }
 
+
+
+/* Instructors list popup */
+
+.instructor {
+  /* float:left; */
+}
+
+.instructor img {
+    width:100px;
+    height:125px;
+}
+
+
+.disabled {
+    color:#666;
+}
+
+.disabled img {
+    filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome & Safari 6+ */
+    
+}
+.descr {display:none;}

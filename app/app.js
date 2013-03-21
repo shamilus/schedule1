@@ -85,8 +85,8 @@ var app = Ext.application({
 
     },
 
-    models:['TableData', 'AppState'],
-    stores:['WeekStore'],
+    models:['TableData', 'AppState','InstructorModel'],
+    stores:['WeekStore', 'InstructorStore'],
     controllers:['MainController', 'WeekController'],
     views:['MainView', 'OptionsToolbar']
 

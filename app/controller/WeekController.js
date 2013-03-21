@@ -11,71 +11,84 @@ Ext.define('Schedule.controller.WeekController', {
     ],
     weekStore: null,
     init: function() {
-        this.weekStore = this.getWeekStoreStore();
-        this.weekStore.addListener('weekDataLoaded', this.display, this);
+        log('week controller: init ');
 
-    },
-    display: function(e) {
-        log('week controller');
+        var a = 'uuu';
 
+        var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        var daysRus = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресение'];
+        var grids = [];
+        var store = null;
+        var grid = null;
+        var container = null;
+        var day = 7;
 
         if (!this.ready) {
-            
-            log('ready');
+            this.weekStore = this.getWeekStoreStore();
 
-            this.viewPort = this.getMainView();
-            // TODO: Refactor 
-            var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-            var daysRus = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресение'];
-            var grids = [];
-            var store = null;
-            var grid = null;
-            var day = 7;
-            while (day--) {
+            this.weekStore.addListener('weekDataLoaded', function(e) {
 
 
-                store = Ext.create('Ext.data.Store', {
-                    model: 'Schedule.model.TableData',
-                    storeId: days[day],
-                    autoLoad: false,
-                    proxy: {
-                        type: 'memory',
-                        reader: {
-                            type: 'json'
+
+
+                this.viewPort = this.getMainView().items.items[1];
+                // TODO: Refactor
+
+                while (day--) {
+
+
+                    store = Ext.create('Ext.data.Store', {
+                        model: 'Schedule.model.TableData',
+                        storeId: days[day],
+                        autoLoad: false,
+                        proxy: {
+                            type: 'memory',
+                            reader: {
+                                type: 'json'
+                            }
+
                         }
 
-                    }
+                    });
+                    store.loadData(e.result[day]);
 
+
+                    grid = Ext.create('Schedule.view.TheGrid', {
+                        store: store,
+                        title: daysRus[day],
+                        id: 'grid' + days[day],
+                    });
+
+                    grids.unshift(grid);
+
+                }
+                log(grids.length);
+                container = Ext.create('Ext.container.Container', {
+                    layout:{
+                        type:'anchor'
+                       // align:'stretch'
+                    },
+                   id:'weekContainer',
+                   
+                    items:grids
+                    
                 });
-                store.loadData(e.result[day]);
+                
+                this.viewPort.add(container);
 
 
-                grid = Ext.create('Schedule.view.TheGrid', {
-                    store: store,
-                    title: daysRus[day],
-                    id: 'grid' + days[day]
-                });
+            }, this);
 
-                grids.unshift(grid);
-
-            }
-            this.container = Ext.create('Ext.container.Container', {
-                layout: {
-                    type: 'vbox'
-                },
-                width: '100%',
-                height:'100%',
-               // renderTo: this.getMainView()
-            });
-            this.container.add(grids);
             this.ready = true;
+
+
 
         } else {
             log('grids');
             // this.viewPort.add(this.grids);
-
+            container.setVisible(false);
+            log(container.isVisible());
         }
-
 
     },
     container: null,
