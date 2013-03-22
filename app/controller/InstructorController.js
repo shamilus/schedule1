@@ -13,17 +13,19 @@ Ext.define('Schedule.controller.InstructorController', {
     onInstructorsLoad: function (e) {
         log('onLoaddd ');
 
+        var me = this;
+
 
         var tpl = new Ext.XTemplate(
-            '<ul>',
+            '<ul id="instructorsList">',
             '<tpl for=".">',
                 '<tpl if="this.isDisabled(values)">',
                '<li class="instructor">',
-'<input type="checkbox" name="instructorsCb[]">{title}',
+'<input type="checkbox" name="instructorsCb[]" value="{id}">{title}',
             '<p>{image}</p>',
 '<img src="{img}" alt="{title}" title="{title}" />',
 '<!--<p class="descr">{teacherDescription}</p>-->',
-'</li></tpl></tpl></ul>',
+'</li></tpl></tpl></ul><input id="instructorsBtn" type="button" value="Выбрать">',
 
             {
                 isDisabled: function (values) {
@@ -48,6 +50,28 @@ Ext.define('Schedule.controller.InstructorController', {
 
         tpl.overwrite(popup.body, e.result);
 
-    }
+        // Checkboxes submit listener
+
+        Ext.get('instructorsBtn').on('click', function(e){
+            var selected = me.processCheckboxes('instructorsCb[]');
+            log(selected.length);
+
+        });
+
+
+    },
+
+
+    processCheckboxes:function(chkboxName) {
+
+            var checkboxes = document.getElementsByName(chkboxName);
+            var checkboxesChecked = [];
+            for (var i = 0, l = checkboxes.length; i < l; i++) {
+                if (checkboxes[i].checked) {
+                    checkboxesChecked.push(checkboxes[i]);
+                }
+            }
+            return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+        }
 
 });
